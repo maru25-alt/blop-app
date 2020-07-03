@@ -1,0 +1,39 @@
+
+@include media-md{
+    body{
+        background-color: lightblue;
+    }
+
+    .navbar-items{
+        position: absolute;
+        right: 5%;
+       
+
+    }
+    .app-categories{
+       
+        li a{
+            padding: 1em;
+           
+            &:hover {
+                color: #fff;
+                background: $primary-color;
+            }
+           
+        }
+
+    }
+
+}
+
+@include media-lg{
+    
+
+}
+
+
+@include media-xl{
+
+
+
+}

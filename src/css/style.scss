@@ -1,0 +1,131 @@
+@import './config';
+@import './navigation';
+@import './home';
+@import './footer';
+@import './about';
+@import './contact';
+@import './single';
+@import './signup';
+@import './responsive';
+@import './dashboard';
+
+
+body{
+    margin: 0 2rem;
+    padding: 0;
+    font-size: 16px;
+};
+
+h1, h2, h3, h4, h5,h6{
+    color: #18CC5D; 
+    font-family: 'Source Sans Pro','Open Sans', sans-serif;
+}
+
+h1{
+    font-size: 3rem;
+    
+}
+
+p{
+    font-size: 16px;
+    color: $background-color;
+    font-family: 'PT Sans', sans-serif;
+    width: 90%;
+}
+ul li{
+    list-style: none;
+}
+a[href = '']{
+    text-decoration: none;
+    color: #000;
+
+    &:hover{
+        text-decoration: none;   
+    }
+    
+}
+
+
+.category{
+   background: $button-color;
+   color: #fff;
+  padding: 0.4em 4em;
+   border-radius: 10px;
+   font-size: 0.8rem;
+   margin: 1em 0;
+
+   &:hover{
+       opacity: 0.5;
+   }
+   
+}
+
+.social-links{
+    display: flex;
+    
+    li a{
+        padding: 0.5em;
+        color: $primary-color;
+        font-size: 1rem;
+    }
+}
+
+
+.button{
+    background-color: $button-color;
+    color: #fff;
+    width: 10em;
+    padding: 0.5em 0;
+    border-radius: 5px;
+
+    &:hover{
+        background: none;
+        border: 1px solid $button-color;
+        color: $button-color;
+    }
+}
+
+
+.date{
+    font-style: italic;
+    color: $background-color;
+    padding: 1em 0;
+    font-weight: bolder;
+}
+
+
+.has-errors{
+    color: red;
+
+    input {
+        border: 2px solid red;
+    }
+    textarea{
+        border: 2px solid red;
+    }
+    select{
+        border: 2px solid red;
+    }
+
+    .errors{
+        font-style: italic;
+        font-size: medium;
+    }
+}
+
+.errors{
+    font-style: italic;
+    font-size: medium;
+    color: red;
+}
+
+.link{
+    text-decoration: none;
+    &hover{
+        opacity: 0.5;
+    }
+}
+
+a{
+    text-decoration: none;
+}

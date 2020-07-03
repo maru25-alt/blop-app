@@ -1,0 +1,26 @@
+.contact{
+    width: 90%;
+   position: relative;
+   left: 10%;
+   min-height: 60vh;
+   margin-top: 5%;
+
+   .about-contact__subheading{
+       font-style: italic;
+       font-weight: 700;
+       color: $secondary-color;
+   }
+
+   .contact-details__contacts{
+       margin: 2.5em 0;
+
+       span{
+           font-size: 16px;
+           color: $secondary-color;
+       }
+   }
+   .contact-details__social{
+    margin: 2.5em 0;
+
+   }
+}

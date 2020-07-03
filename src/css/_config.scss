@@ -1,0 +1,31 @@
+$primary-color : #18CC5D;
+$secondary-color: #094D23;
+$button-color: #CC0E04;
+$background-color: #2B2C36;
+
+
+
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+@mixin media-md {
+    @media only screen and (min-width: 768px) {
+        @content;
+    }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@mixin media-lg {
+    @media only screen and (min-width: 992px) {
+        @content;
+    }
+}
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@mixin media-xl {
+    @media only screen and (min-width: 1200px) {
+        @content;
+    }
+}
