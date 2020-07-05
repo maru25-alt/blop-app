@@ -1,6 +1,50 @@
 import React, { Component } from 'react'
-
+import emailjs from 'emailjs-com';
+import SimpleReactValidator from 'simple-react-validator';
 export default class Contact extends Component {
+    constructor() {
+        super();
+        this.validator = new SimpleReactValidator({
+            element: (message) => <div className="error">{message}</div>
+        });
+      }
+    state = {
+        name: "",
+        email: "",
+        message: "",
+        number: ""
+    }
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id] : e.target.value
+        })
+    }
+     handleSubmit = (e) => {
+         e.preventDefault();
+     if (this.validator.allValid()) {
+            emailjs.sendForm('gmail', 'contact', e.target, 'user_MKMbkoKCK0PNJYbeaCWRm')
+            .then((result) => {
+                console.log(result.text);
+                alert("Successfully send message")
+            }, (error) => {
+                console.log(error.text);
+                alert(error.text)
+            });
+            this.setState({
+                name: "",
+                email: "",
+                message: "",
+                number: ""
+           })
+       }
+    else {
+        this.validator.showMessages();
+        this.forceUpdate();
+      }
+}
+
+
+
     render() {
         return (
             <div className='contact '>
@@ -33,31 +77,32 @@ export default class Contact extends Component {
                         <div className='contact-details__social'>
                         <h3>Follow Me:</h3>
                             <ul className='social-links'>
-                                  <li><a><i className="fab fa-instagram fa-2x"></i></a></li>
-                                  <li><a><i className="fab fa-facebook fa-2x"></i></a></li>
-                                  <li><a><i className="fab fa-twitter fa-2x"></i></a></li>
-                                  <li><a><i className="fab fa-linkedin fa-2x"></i></a></li>
+                            <li><a href="https://www.instagram.com/rudomaru25/"> <i className="fab fa-instagram fa-2x"></i></a></li>
+                            <li><a href="https://www.facebook.com/rudo.mapfumba"><i className="fab fa-facebook fa-2x"></i></a></li>
+                            <li><a href= "https://twitter.com/MapfumbaRudo"><i className="fab fa-twitter fa-2x"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/rudo-maru-6023a9167/"><i className="fab fa-linkedin fa-2x"></i></a></li>
                             </ul>
                         </div>
                     </div>
 
                 </div>
                 <div className='contact-form col-sm-12 col-md-6'>
-                    <h2>Message Us</h2>
-                    <form>
+                    <h2>GET IN TOUCH </h2>
+                    <form  onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <label>Name</label>
-                            <input className="form-control" required type='text'/>
+                            <input className="form-control"  type='text' name="user_name" value={this.state.name}  id="name" onChange={this.handleChange} />
+                            {this.validator.message('name',this.state.name, 'required')}
                         </div>
                         <div className="form-group">
                             <label>Email</label>
-                            <input className="form-control" required type='email'/>
+                            <input className="form-control" type='email'  name="user_email" value={this.state.email}  id="email" onChange={this.handleChange}/>
+                            {this.validator.message('email',this.state.email, 'required|email')}
                         </div>
                         <div className="form-group">
                             <label>Message</label>
-                            <textarea required className="form-control">
-
-                            </textarea>
+                            <textarea className="form-control" name="message" value={this.state.message}  id="message" onChange={this.handleChange} ></textarea>
+                            {this.validator.message('message',this.state.message, 'required')}
                         </div>
                         
                        <div className="form-group">

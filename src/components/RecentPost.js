@@ -7,17 +7,12 @@ class RecentPost extends Component {
     render() {
         let blog = this.props.blogs && this.props.blogs.map( blog => {
             return (
-                <div key={blog.post_id} className='container recent-blog__container'>
-                  <div className='recent-blogs__upper row'>
-                        <div className=' col-sm-12'>
-                          <a  style={{ textDecoration: 'none' }}  href={`/blog/${blog.post_id}`}> <h5 className="recent-title">{blog.title}</h5></a>
-                          <span className='recent-date'> {moment(blog.created_on).format("DD/MM/YYYY")}</span>
-                        </div> 
-                        <div className='col-sm-12'>
-                        <img src={blog.cover_photo} alt="800X800" width='150'/> 
-                        </div>  
-                        
-                  </div> 
+                <div key={blog.sys.id} className='container recent-blog__container'>
+                          <a  style={{ textDecoration: 'none' }}  href={`/blog/${blog.sys.id}`}> 
+                          <h5 className="recent-title">{blog.fields.title}</h5>
+                          <p  className='recent-date'> {moment(blog.sys.createdAt).format("DD/MM/YYYY")}</p>
+                         <img src={blog.fields.photo.fields.file.url} alt="800X800" className="image"/> 
+                      </a>
                 </div>
             )
         })

@@ -4,10 +4,10 @@
 @import './footer';
 @import './about';
 @import './contact';
-@import './single';
-@import './signup';
+
+
 @import './responsive';
-@import './dashboard';
+
 
 
 body{
@@ -77,6 +77,7 @@ a[href = '']{
     width: 10em;
     padding: 0.5em 0;
     border-radius: 5px;
+    border: none;
 
     &:hover{
         background: none;

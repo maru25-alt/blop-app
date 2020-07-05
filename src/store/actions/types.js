@@ -8,23 +8,12 @@ export const FETCH_AUTHOR = 'FETCH_AUTHOR';
 export const FETCH_CATEGORY_BLOGS = 'FETCH_CATEGORY_BLOGS';
 export const FETCH_ALL_CATEGORIES = 'FETCH_ALL_CATEGORIES';
 
-export const SIGNUP = 'SIGNUP';
-export const SIGNIN = 'SIGNIN';
-export const SIGNOUT = 'SIGNOUT';
-export const CREATE_BLOG = 'CREATE_BLOG';
-
-export const ADD_FLASH_MESSAGE = 'ADD_FLASH_MESSAGE';
-export const DELETE_FLASH_MESSAGE = 'DELETE_FLASH_MESSAGE';
 
 
-export const GET_CURRENT_USER  = 'GET_CURRENT_USER';
-export const EDIT_PROFILE = 'EDIT_PROFILE';
-export const GET_AUTHOR_BLOGS = 'GET_AUTHOR_BLOGS';
-export const DELETE_BLOG = 'DELETE_BLOG';
-export const GET_EDIT_BLOG = 'GET_EDIT_BLOG';
-export const EDIT_BLOG = 'EDIT_BLOG';
 
 
-export const CREATE_DATABASE = 'CREATE_DATABASE';
-export const CREATE_TABLES = 'CREATE_TABLES';
-export const INSERT_INTO_TABLES = 'INSERT_INTO_TABLES';
+
+export const GET_PAGINATION  = 'GET_PAGINATION';
+;
+
+

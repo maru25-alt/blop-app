@@ -8,5 +8,6 @@ export const addUser = (user) => dispatch =>{
 
 
 export const addComment = (comment) => dispatch => {
+ 
     return axios.post('http://localhost:5000/comments/addcomment', comment)
 }

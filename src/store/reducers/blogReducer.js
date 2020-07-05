@@ -1,4 +1,9 @@
-import {FETCH_BLOGS,  FETCH_BLOG , FETCH_CATEGORY,FETCH_COMMENTS, FETCH_FEATURES,FETCH_RECENT_BLOGS, FETCH_AUTHOR, DELETE_BLOG,FETCH_CATEGORY_BLOGS,FETCH_ALL_CATEGORIES}from '../actions/types';
+import {FETCH_BLOGS,  FETCH_BLOG , FETCH_CATEGORY, 
+    FETCH_FEATURES,FETCH_RECENT_BLOGS, FETCH_AUTHOR, 
+   FETCH_CATEGORY_BLOGS,
+    FETCH_ALL_CATEGORIES, GET_PAGINATION}from '../actions/types';
+
+
 const intialState = {
     blogs: [],
     blog: [],
@@ -9,8 +14,11 @@ const intialState = {
     author : [],
     editBlog: [],
     categoryBlogs: [],
-    allCategories: []
+    allCategories: [],
+    pagination: 0
 }
+
+
 export default function (state = intialState, action){
     switch(action.type){
         case FETCH_BLOGS :
@@ -29,11 +37,7 @@ export default function (state = intialState, action){
                     ...state,
                     category: action.payload
                 };
-        case FETCH_COMMENTS :
-            return {
-                 ...state,
-                comments: action.payload
-                 }; 
+       
              
         case FETCH_FEATURES :
             return {
@@ -50,11 +54,7 @@ export default function (state = intialState, action){
                      ...state,
                      author: action.payload
                 }; 
-        case DELETE_BLOG: 
-            return{
-                ...state,
-                blogs: state.blogs.filter(e => e.id !== action.payload)
-            }
+        
 
         case FETCH_CATEGORY_BLOGS:
             return{
@@ -66,6 +66,11 @@ export default function (state = intialState, action){
                ...state,
                allCategories: action.payload
            }
+        case GET_PAGINATION: 
+          return{
+              ...state,
+              pagination: action.payload
+          } 
         default: return state;
     }
 }

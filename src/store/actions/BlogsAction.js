@@ -1,190 +1,146 @@
-
+import Client from '../api'
 import {FETCH_BLOGS, 
     FETCH_BLOG,
     FETCH_CATEGORY, 
-    FETCH_COMMENTS, 
     FETCH_FEATURES,
     FETCH_RECENT_BLOGS,
-    FETCH_AUTHOR, DELETE_BLOG, 
-    ADD_FLASH_MESSAGE, EDIT_BLOG,
+    FETCH_AUTHOR, 
     FETCH_CATEGORY_BLOGS,
-    FETCH_ALL_CATEGORIES
+    GET_PAGINATION
    } 
     from './types';
-import axios from 'axios'    
+  
+ export const fetchBlogsNum = () => dispatch => {
+    Client.getEntries({
+        content_type : "posts",
+       
+    }).then((res) => {
+        const blogNum = res.items.length
+        dispatch({
+            type: GET_PAGINATION,
+            payload: blogNum
+        }) 
+    })
+ }   
 
 
 export const fetchBlogs = () => dispatch =>{
-   console.log('fetching blogs')
-    axios
-    .get('http://localhost:5000/blogs')
-    .then(res => {
-       console.log(res.data, 'server call');
-       dispatch({
-                type: FETCH_BLOGS,
-                payload: res.data
-            }) 
-    }).catch(err =>{
-       console.log(err)
+   console.log('fetching blogs...')
+    Client.getEntries({
+        content_type : "posts",
+        "skip": 0,
+        "limit": 6, 
+    }).then((res) => {
+        dispatch({
+            type: FETCH_BLOGS,
+            payload: res.items
+        }) 
     })
 };
 
 export const fetchBlog = (id) => dispatch =>{
-    console.log('fetching blog')
-    axios.get(`http://localhost:5000/blogs/getblog/${id}`)
-    .then(res => {
-        console.log(res.data,'featured')
+    console.log('fetching blog...')
+    Client.getEntries({
+        content_type : "posts"
+    }).then((res) => {
+        let post = res.items.filter(e => {
+          return  e.sys.id === id;
+        })
         dispatch({
             type: FETCH_BLOG,
-            payload: res.data
-        });    
+            payload: post
+        }) 
     })
    
 };
 
 export const fetchCategory = () => dispatch =>{
-    console.log('fetching category')
-    axios.get('http://localhost:5000/categories')
-    .then(res => {
-        console.log(res.data,'featured')
-        dispatch({
+    console.log('fetching categories...')
+    Client.getEntries({
+        content_type : "posts",
+        
+    }).then((res) => {
+    const getUnique = (items, value) => {
+            return [...new Set(items.map((item, index) => {
+                return   {
+                     id:index, 
+                     name:item.fields[value],
+                     number: items.filter(str => str.fields.category === item.fields[value]).length
+                    }
+               })
+            )]
+        }
+    let categories = getUnique(res.items, "category")
+    dispatch({
             type: FETCH_CATEGORY,
-            payload: res.data
-        });    
+            payload: categories
+        }) 
     })
     
 };
 
-export const fetchComments = (id) => dispatch =>{
-    console.log('fetching comments');
-    axios.get(`http://localhost:5000/comments/${id}`)
-    .then(res => {
-        console.log(res.data)
-        dispatch({
-            type: FETCH_COMMENTS,
-            payload: res.data
-        }); 
-    })   
-};
 
 export const fetchRecentBlogs = () => dispatch =>{
-    console.log('fetching recent blogs')
-    axios.get('http://localhost:5000/blogs/getRecent')
-    .then(res => {
-        console.log(res.data,'featured')
+    console.log('fetching recent blogs...')
+    Client.getEntries({
+        content_type : "posts",
+        order: 'sys.createdAt'
+    }).then((res) => {
+        let recentPost = res.items.slice(0, 3) 
         dispatch({
             type: FETCH_RECENT_BLOGS,
-            payload: res.data
-        });    
+            payload: recentPost
+        }) 
     })
 
 
 };
 
-export const fetchAuthor = (id) => dispatch =>{
-    console.log('fetching author');
-    axios.get(`http://localhost:5000/blogs/getAuthor/${id}`)
-    .then(res => {
+export const fetchAuthor = () => dispatch =>{
+    console.log('fetching author...');
+    Client.getEntries({
+        content_type : "author",
+    }).then((res) => {
         dispatch({
             type: FETCH_AUTHOR,
-            payload: res.data
-        }); 
-    })   
+            payload: res.items
+        }) 
+    })  
 };
-
 
 export const fetchFeatured = () => dispatch =>{
 
-    console.log('fetching featured blogs')
-    axios.get('http://localhost:5000/blogs/getfeatured')
-    .then(res => {
-        console.log(res.data,'featured')
+    console.log('fetching featured blogs...')
+    Client.getEntries({
+        content_type : "posts",
+        order: 'sys.createdAt'
+    }).then((res) => {
+        let recentPost = res.items.slice(0, 3) 
         dispatch({
             type: FETCH_FEATURES,
-            payload: res.data
-        });    
+            payload: recentPost
+        }) 
     })
    
 };
 
 export const fetchCategoryBlogs = (id) => dispatch => {
-    axios.get(`http://localhost:5000/categories/getblogs/${id}`)
-    .then(res => {
+   console.log(id)
+
+    Client.getEntries({
+        content_type : "posts",
+    }).then((res) => {
+        let posts = res.items.filter(post => {
+          return  post.fields.category === id
+        })
         dispatch({
             type: FETCH_CATEGORY_BLOGS,
-            payload: res.data
-        })
+            payload: posts
+        }) 
     })
 }
 
 
 
-export const createBlog = (blog) => dispatch => {
-  return  axios.post('http://localhost:5000/blogs/newblog', blog)
-    
-
-}
 
 
-
-export const deleteBlog = (id) => dispatch => {
-    axios.delete(`http://localhost:5000/blogs/delete/${id}`).then(res => {
-        console.log(res.data)
-        dispatch({
-            type: DELETE_BLOG,
-            payload: id
-        });
-        let successMessage = {
-            type: 'success',
-            text: res.data
-        }
-        let errorMessage = {
-            type: 'error',
-            text: 'Sorry error occurred'
-        }
-        if(res.data.includes('Post deleted...')){
-            dispatch({
-                type: ADD_FLASH_MESSAGE,
-                payload: successMessage
-            })}
-        else{
-            dispatch({
-                type: ADD_FLASH_MESSAGE,
-                payload: errorMessage
-            })
-        }
-        
-    })
-}
-
-
-export const editBlog = (id, name , value) => dispatch => {
-    console.log(id, name , value)
-    dispatch({
-      type: EDIT_BLOG,
-      id,
-      name,
-      value
-    })
-
-}
-
-export const postEditBlog = (id,post) => dispatch => {
-    console.log(post)
-  return axios.post(`http://localhost:5000/blogs/update/${id}`, post)
-
-}
-
-export const fetchAllCategories = () => dispatch => {
-    axios.get('http://localhost:5000/categories/getAllcategories').then(res => {
-        dispatch({
-            type: FETCH_ALL_CATEGORIES,
-            payload: res.data
-         })
-    })
-    
-}
-
-export const addCategory = (body) =>  dispatch =>{
-    return axios.post('http://localhost:5000/categories/addCategory', body)
-}

@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
+//import logo from '../images/logo.jpg'
 import logo from '../images/logo.jpg'
-import {SignedInRoutes, SignedOutRoutes} from './SignedInRoutes'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import {authorSignout} from '../store/actions/AuthActions'
 import { fetchCategory} from '../store/actions/BlogsAction'
 
  class Navigation extends Component {
@@ -15,48 +14,35 @@ import { fetchCategory} from '../store/actions/BlogsAction'
     
 }
 componentWillMount(){
-  this.props. fetchCategory()
-  console.log('navigation mounted')
+  this.props.fetchCategory()
 }
   
     render() {
-      let isloggedIn;
-      if(this.props.isAuthentification){
-        isloggedIn = <SignedInRoutes  logout={this.logout}/>
-      }
-      else {
-        isloggedIn = <SignedOutRoutes  />
-      }
-      console.log(this.props.category)
       let categories = this.props.category && this.props.category.map(e => {
         return(
-            <a key={e.category_id}className="badge badge-pill badge-success" href={`/category/${e.category_id}`}>{e.name}</a>
+            <a key={e.id}className="badge badge-pill " href={`/category/${e.name}`}>{e.name}</a>
         )
       })
         return (
           <div>
-             
                     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                             <div className='navbar-brand'>
                                   <ul className='social-links'>
-                                          <li><a> <i className="fab fa-instagram "></i></a></li>
-                                          <li><a><i className="fab fa-facebook "></i></a></li>
-                                          <li><a><i className="fab fa-twitter "></i></a></li>
-                                          <li><a><i className="fab fa-linkedin "></i></a></li>
+                                          <li><a href="https://www.instagram.com/rudomaru25/"> <i className="fab fa-instagram "></i></a></li>
+                                          <li><a href="https://www.facebook.com/rudo.mapfumba"><i className="fab fa-facebook "></i></a></li>
+                                          <li><a href= "https://twitter.com/MapfumbaRudo"><i className="fab fa-twitter "></i></a></li>
+                                          <li><a href="https://www.linkedin.com/in/rudo-maru-6023a9167/"><i className="fab fa-linkedin "></i></a></li>
                                   </ul>
                           </div>
-                      <div className="navbar-items  justify-content-end">
-                            {isloggedIn} 
-                      </div>
                     </nav>
             <header className='subheading'>
               <div className="app-logo">
                 <img src={logo} alt='40x40'/>
               </div>
                 <div className='app-categories'>
-                 <a className="badge badge-pill badge-success"  href='/'>Home</a>
-                    {categories}
-                  <a className="badge badge-pill badge-success" href="/contact">About Us</a> 
+                 <a className="badge badge-pill active"  href='/'>Home</a>   
+                 {categories}
+                  <a className="badge badge-pill active"  href="/contact">About</a> 
                 </div>
             </header>
   </div>
@@ -67,11 +53,10 @@ componentWillMount(){
 
 const mapActionsToProps = {
    fetchCategory,
-  authorSignout
+ 
 }
 
 const mapStateToProps = (state) => ({
-     isAuthentification: state.authors.isAuthenticated,
      category: state.blogs.category
 })
 
