@@ -7,6 +7,9 @@
     align-items: center;
     flex-direction: column;
     margin-top: 5em;
+    position: relative;
+    left: 0;
+    right: 0;
 
   .logo, .footer-social-icons, .footer-subscribe, .footer-text{
         margin: 0.5em 0;

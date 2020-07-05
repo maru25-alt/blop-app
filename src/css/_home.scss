@@ -9,18 +9,14 @@
     left: 5%;
 
     .featured{
-      // border: 1px solid #444;
        border-radius: 5px ;
-       min-height: 50vh;
+       min-height: 65vh;
        box-shadow: 0 4px 8px 0 rgba(0, 0, 
        0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      
         .feature-image{
             position: relative;
             width: 100%;
-            height: auto;
-
-            
+            height: auto;      
        } 
         .feature-content{
            // position: absolute;

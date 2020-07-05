@@ -3,6 +3,10 @@
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 .navbar {
   height: 8vh;
+  width: 100%;
+  position: relative;
+  left: 0;
+  right: 0;
 }
 
 .navbar .nav-link-item {
@@ -82,7 +86,7 @@
 
 .featured-container .featured {
   border-radius: 5px;
-  min-height: 50vh;
+  min-height: 65vh;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -227,6 +231,9 @@
       -ms-flex-direction: column;
           flex-direction: column;
   margin-top: 5em;
+  position: relative;
+  left: 0;
+  right: 0;
 }
 
 .footer .logo, .footer .footer-social-icons, .footer .footer-subscribe, .footer .footer-text {
@@ -277,23 +284,6 @@
 
 .error {
   color: red;
-}
-
-@media only screen and (min-width: 768px) {
-  body {
-    background-color: lightblue;
-  }
-  .navbar-items {
-    position: absolute;
-    right: 5%;
-  }
-  .app-categories li a {
-    padding: 1em;
-  }
-  .app-categories li a:hover {
-    color: #fff;
-    background: #18CC5D;
-  }
 }
 
 body {

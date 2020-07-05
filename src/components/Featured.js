@@ -8,7 +8,7 @@ export default class Featured extends Component {
        let blogs =  this.props.blogs;
       let  blog = blogs && blogs.map( blog => {
           return(
-              <div key={blog.sys.id} className='col-xl-4 col-md-4 col-sm-12 featured'  >
+              <div key={blog.sys.id} className='col-md-4 col-sm-12 featured'  >
                 <img className='feature-image' src={blog.fields.photo.fields.file.url} alt="featured"/>
                  <div className='feature-content'>
                  <a style={{ textDecoration: 'none' }} href={`/blog/${blog.sys.id}`}> <h4 className='featured-title'>{blog.fields.title}</h4></a>
@@ -19,8 +19,8 @@ export default class Featured extends Component {
           )
       });
         return (
-            <div>
-                <div className='row featured-container '>
+            <div className='featured-container '>
+                <div className='row '>
                    {blog}
                 </div>
             </div>
