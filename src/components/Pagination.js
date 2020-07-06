@@ -40,11 +40,12 @@ import PropTypes from 'prop-types'
                 </li>
                 {
                   Array.apply(null, {pages }).map((e, i) => (
-                  <li key={i} href="/" className=""><a className="page-link" >{i}</a></li>
+                  <li key={i}  className=""><a href="/" className="page-link" >{i}</a></li>
                   ))
                 }
-                <li href="/" className="page-item">
-                  <a className="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+                <li className="page-item">
+                  <a href="/" className= "page-link" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a>
+                 
                 </li>
               </ul>
           </nav>
