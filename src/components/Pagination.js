@@ -30,26 +30,26 @@ import PropTypes from 'prop-types'
       else{
         return(
           <div  className='mx-5'>
-          <nav aria-label="Page ">
-              <ul className="pagination">
-                
-                <li className="page-item">
-                  <a href="/" className="page-link"  aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                {
-                  Array.apply(null, {pages }).map((e, i) => (
-                  <li key={i}  className=""><a href="/" className="page-link" >{i}</a></li>
-                  ))
-                }
-                <li className="page-item">
-                  <a href="/" className= "page-link" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a>
-                 
-                </li>
-              </ul>
-          </nav>
-      </div>
+              <nav aria-label="Page ">
+                  <ul className="pagination">
+                    
+                    <li className="page-item">
+                      <a href="/" className="page-link"  aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    {
+                      Array.apply(null, {pages }).map((e, i) => (
+                      <li key={i}  className=""><a href="/" className="page-link" >{i}</a></li>
+                      ))
+                    }
+                    <li className="page-item">
+                      <a href="/" className= "page-link" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a>
+                    
+                    </li>
+                  </ul>
+              </nav>
+         </div>
         )
       }
        
