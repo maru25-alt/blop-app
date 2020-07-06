@@ -5,9 +5,14 @@ import PropTypes from 'prop-types'
 
  
 class SingleBlog extends Component {
+  state = {
+    likes : false,
+    likeNum: 0,
+    active : false
+  }
   shareFacebook = (e) =>{
     e.preventDefault();
-    var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.URL, 'facebook-popup', 'height=350,width=600');
+    var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?url=' + document.URL, 'facebook-popup', 'height=350,width=600');
     if(facebookWindow.focus) { facebookWindow.focus(); }
       return false;
   }
@@ -19,7 +24,26 @@ class SingleBlog extends Component {
       return false;
     }
 
+    handleLikes = (e) => {
+      let status = this.state.likes
+      this.setState({
+       likes : !this.state.likes,
+       likeNum: status ? 0 : 1,
+       active: true,  
+      })
+    }
+    componentDidUpdate(prevProps, prevState) {
+      if (this.state.active) {
+        // when the state is updated (turned red), 
+        // a timeout is triggered to switch it back off
+        setTimeout(() => { 
+          this.setState(() => ({active: false}))
+        }, 500);
+      }
+    }
+
 render() {
+  
   return ( 
     <>
        {this.props.blog && this.props.blog.map(blog => {
@@ -37,10 +61,11 @@ render() {
                    </div>
                 </div>
                 <div className='blog-body'>
-                   <img src={blog.fields.photo.fields.file.url} alt="800X800"  width='560' height='460'/> 
+                   <img src={blog.fields.photo.fields.file.url} alt="800X800" className='image'  /> 
                    <br></br>
                       <RichTextToReact document={blog.fields.body} />
                 </div> 
+               <button onClick={this.handleLikes} className={this.state.active ? 'btn bubbly-button animate' :'btn bubbly-button'}>{blog.fields.likesNum + this.state.likeNum} <i className={this.state.likes ?"fas fa-heart fa-1x" : "far fa-heart fa-1x animate"}></i> </button>
         </div>
         )
       })} 

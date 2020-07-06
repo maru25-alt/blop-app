@@ -4,7 +4,7 @@
 @import './footer';
 @import './about';
 @import './contact';
-
+@import './single';
 
 
 
@@ -129,4 +129,18 @@ a[href = '']{
 
 a{
     text-decoration: none;
+}
+
+.container_404{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+
+    h1{
+        font-size: 3em;
+        font-weight: bolder;
+    }
+    p{
+        font-weight: bolder;
+    }
 }

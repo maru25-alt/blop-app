@@ -10,8 +10,6 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import {fetchBlogs, fetchFeatured } from '../store/actions/BlogsAction';
-
-
 import SideBar from '../components/Sidebar'
 
 class Home extends Component {
@@ -23,7 +21,6 @@ class Home extends Component {
     }
 
     render() {
-       console.log(this.props.featured)
         return (
             <section className='home'>
                 <div className='feature__container'>
@@ -45,6 +42,11 @@ class Home extends Component {
     }
 }
 
+Home.propTypes ={
+    blogs : PropTypes.array.isRequired,
+    featured: PropTypes.array.isRequired
+
+   };
 
 const mapStateToProps = state => ({
     blogs : state.blogs.blogs,

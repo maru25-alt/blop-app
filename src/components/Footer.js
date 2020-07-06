@@ -20,9 +20,10 @@ class Footer extends Component {
             })
         }
         else{
+            alert(`Thanks for subscribing ${this.state.email}. You are going to be receiving emails notifying you about new post. Feel free to unsubscribe any time`)
             this.setState({
-                errors: '',
-              
+                errors: '', 
+                email:''
             })
            
         }

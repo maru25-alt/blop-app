@@ -1,16 +1,22 @@
 import React, { Component } from 'react'
+import FB from 'fb'
 class Comment extends Component {
 
     componentDidMount() {
         window.fbAsyncInit = function() {
-        window.FB.init({
-          appId: "703449720452801",
+          
+        FB.init({
+          appId: "273947156999841",
           autoLogAppEvents : true,
           xfbml            : true,
-          version          : 'v3.0'
+          version          : 'v3.0',
+          status: true,
+          cookie: true
          });
         };
-      
+        window.FB = FB;
+
+        document.dispatchEvent(new Event('fb_init'));
         // Load the SDK asynchronously
         (function(d, s, id) {
          var js,
@@ -24,15 +30,15 @@ class Comment extends Component {
       }  
       
       componentDidUpdate() {
-        window.FB.XFBML.parse();
+        //  FB.XFBML.parse();
        }
     render() {
         
         return (
             <div className='comments'>
-               <div className="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5" data-width="">hi</div>
+               {/* <div  className='heading'><span> Comments</span></div>   */}
+               <div className="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5" data-width=""></div>
     
-              <div  className='heading'><span> Comments</span></div>  
               
             </div>
         )

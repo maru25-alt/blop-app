@@ -43,8 +43,6 @@ export default class Contact extends Component {
       }
 }
 
-
-
     render() {
         return (
             <div className='contact '>
@@ -62,30 +60,7 @@ export default class Contact extends Component {
                     </div>
             </div>
             <div className='row'>
-                <div className='contact-details col-sm-12 col-md-6'>
-                    
-
-
-                    <div>
-                        <div className='contact-details__contacts'>
-                        <h3>Contact Me: </h3>
-                            <span><i className="fas fa-phone-alt "></i> &nbsp; +86 156 0542 6035</span> <br/>
-                            <span><i className="fas fa-envelope "></i>  &nbsp; &nbsp;rudomaru25@gmail.com</span><br/>
-                            <span><i className="fas fa-map-marker-alt "></i> &nbsp; &nbsp; 243 Tomazoes Road</span>
-                        </div>
-                        
-                        <div className='contact-details__social'>
-                        <h3>Follow Me:</h3>
-                            <ul className='social-links'>
-                            <li><a href="https://www.instagram.com/rudomaru25/"> <i className="fab fa-instagram fa-2x"></i></a></li>
-                            <li><a href="https://www.facebook.com/rudo.mapfumba"><i className="fab fa-facebook fa-2x"></i></a></li>
-                            <li><a href= "https://twitter.com/MapfumbaRudo"><i className="fab fa-twitter fa-2x"></i></a></li>
-                            <li><a href="https://www.linkedin.com/in/rudo-maru-6023a9167/"><i className="fab fa-linkedin fa-2x"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
+               
                 <div className='contact-form col-sm-12 col-md-6'>
                     <h2>GET IN TOUCH </h2>
                     <form  onSubmit={this.handleSubmit}>
@@ -110,6 +85,29 @@ export default class Contact extends Component {
                        </div>
 
                     </form>
+                </div>
+
+  <div className='col-md-2'></div>
+                <div className='contact-details col-sm-12 col-md-4'>
+                    <div>
+                        <div className='contact-details__contacts'>
+                        <h3>Contact Me: </h3>
+                            <span><i className="fas fa-phone-alt "></i> &nbsp; +86 156 0542 6035</span> <br/>
+                            <span><i className="fas fa-envelope "></i>  &nbsp; &nbsp;rudomaru25@gmail.com</span><br/>
+                            <span><i className="fas fa-map-marker-alt "></i> &nbsp; &nbsp; 243 Tomazoes Road</span>
+                        </div>
+                        
+                        <div className='contact-details__social'>
+                        <h3>Follow Me:</h3>
+                            <ul className='social-links'>
+                            <li><a href="https://www.instagram.com/rudomaru25/"> <i className="fab fa-instagram fa-2x"></i></a></li>
+                            <li><a href="https://www.facebook.com/rudo.mapfumba"><i className="fab fa-facebook fa-2x"></i></a></li>
+                            <li><a href= "https://twitter.com/MapfumbaRudo"><i className="fab fa-twitter fa-2x"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/rudo-maru-6023a9167/"><i className="fab fa-linkedin fa-2x"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
           </div>  

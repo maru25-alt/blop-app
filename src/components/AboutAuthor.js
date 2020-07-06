@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import user_profile from '../images/photo-profile.jpeg'
 import { PropTypes } from 'prop-types';
 
 class AboutAuthor extends Component {
     render() {
        let author = this.props.aboutAuthor
         return (
-  <>
+            <>
             {author && author.map(data => {
-                 let profile = data.profile_picture === 'NULL' ? user_profile : data.profile_picture
                 return(
                     <div key={data.sys.id} className='author'>
                         <div  className='heading'> <span>About Author</span></div>
@@ -25,10 +23,7 @@ class AboutAuthor extends Component {
                                         <li key={i}><a href={`${e.link}`}> <i className={`fab fa-${e.title}`}></i> {e.name}</a></li>
                                         )
                                     })}
-                                    {/* <li><a href="#"> <i className="fab fa-instagram"></i></a></li>
-                                    <li><a href="#"><i className="fab fa-facebook"></i></a></li>
-                                    <li><a href="#"><i className="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i className="fab fa-linkedin"></i></a></li> */}
+                                   
                                 </ul>
                             </div>
                         </div>

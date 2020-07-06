@@ -7,7 +7,7 @@ import Comments from '../folder/singleblog/Comments'
 import { withRouter } from "react-router";
 import { connect } from 'react-redux';
 import { fetchFeatured, fetchAuthor, fetchBlog} from '../store/actions/BlogsAction';
-import {addUser} from '../store/actions/User'
+
 import PropTypes from 'prop-types'
 
  class Blog extends Component {
@@ -40,7 +40,7 @@ import PropTypes from 'prop-types'
                     <div className='heading'>  <span >You may also like</span></div>
                        <Featured blogs= {this.props.featured}/>
                     </div>
-                    {/* <Comments /> */}
+                    <Comments />
                   
 
                 </div>
@@ -59,7 +59,6 @@ const mapStateToProps = (state) => ({
     featured : state.blogs.featured, 
     blog : state.blogs.blog,
     category : state.blogs.category,
-    comments: state.blogs.comments,
     author : state.blogs.author
 })
 
@@ -67,7 +66,7 @@ const mapActionToProps = {
     fetchFeatured : fetchFeatured,
     fetchAuthor : fetchAuthor,
     fetchBlog : fetchBlog,
-    addUser,
+  
 }
 
 export default connect(mapStateToProps, mapActionToProps)(withRouter(Blog));
